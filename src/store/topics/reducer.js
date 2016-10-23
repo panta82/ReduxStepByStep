@@ -4,7 +4,8 @@ import * as ACTIONS from '../action_types';
 
 const initialState = Immutable({
 	topicsByUrl: {},
-	selectedTopicUrls: []
+	selectedTopicUrls: [],
+	selectedUrls: []
 });
 
 const topicsFetched = (state, action) => {
@@ -13,8 +14,15 @@ const topicsFetched = (state, action) => {
 	});
 };
 
+const topicsSelected = (state, action) => {
+	return state.merge({
+		selectedUrls: action.selectedUrls
+	});
+};
+
 const ACTION_MAP = {
-	[ACTIONS.TOPICS_FETCHED]: topicsFetched
+	[ACTIONS.TOPICS_FETCHED]: topicsFetched,
+	[ACTIONS.TOPICS_SELECTED]: topicsSelected
 };
 
 export default (state = initialState, action = {}) => {
